@@ -24,6 +24,7 @@ public class HomePageFactory {
     @FindBy(xpath = "//*[@id=\"ember4\"]/div[2]/form/div[4]/button")
     WebElement acceptCookieBtn;
 
+
     public HomePageFactory(WebDriver driver) {
         this.driver = driver;
 

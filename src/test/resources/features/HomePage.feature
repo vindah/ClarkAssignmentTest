@@ -1,5 +1,5 @@
 @test
-Feature: Clark feature
+Feature: Home Page feature
   In order to confirm the details of an item
   As a user
 

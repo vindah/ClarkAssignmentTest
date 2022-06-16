@@ -10,27 +10,20 @@ import org.junit.Assert;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import pages.HomePageFactory;
 import io.cucumber.java.Scenario;
+import pages.RecommendationPageFactory;
 
 import java.util.concurrent.TimeUnit;
 
-public class HomePageTest {
+public class HomePageTest extends BaseTest{
 
-    WebDriver driver;
     HomePageFactory homePage;
-    ConfigFactory ConfigFileReader;
+    RecommendationPageFactory recommendationPage;
 
 
 
-    // This runs before each test
-    @Before()
-    public void setup() {
-        ConfigFileReader = new ConfigFactory();
-        driver = driverUtil.driverFactory.open("chrome");
-        driver.manage().timeouts().implicitlyWait(ConfigFileReader.getImplicitlyWait(), TimeUnit.SECONDS) ;
-
-    }
 
     //Smoke test - verify that the home page loads properly
     @Given("The user is on the home page")
@@ -39,6 +32,7 @@ public class HomePageTest {
         driver.get(ConfigFileReader.getApplicationUrl()) ;
         driver.manage().timeouts().implicitlyWait(ConfigFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
         homePage = new HomePageFactory(driver);
+        recommendationPage = new RecommendationPageFactory(driver);
         homePage.clickOnAcceptCookiesInPopup();
 
     }
@@ -61,10 +55,8 @@ public class HomePageTest {
     }
 
     @Then("The user should be navigated to the recommendations page successfully")
-    public void user_on_bedarf_tab() throws InterruptedException {
-        Thread.sleep(2000);
-        String theUrl = driver.getCurrentUrl();
-        Assert.assertEquals(theUrl, "https://staging.clark.de/de/app/recommendations?tab=no1-recommendation#");
+    public void user_on_bedarf_tab() {
+        Assert.assertTrue(recommendationPage.isStartNowBtnDisplayed());
     }
 
 
@@ -82,17 +74,7 @@ public class HomePageTest {
 
 
 
-    @After()
-    public void takeScreenshots_and_quitDriver(Scenario scenario) {
-        if (scenario.isFailed()) {
-            // take screenshot:
-            String screenshotName = scenario.getName().replaceAll(" ", "_");
-            byte[] sourcePath = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-            scenario.attach(sourcePath, "image/png", screenshotName);
-        }
-        //eyes.abortIfNotClosed();
-        driver.quit();
-    }
+
 }
 
 
