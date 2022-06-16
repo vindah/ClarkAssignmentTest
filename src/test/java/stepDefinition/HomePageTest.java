@@ -5,6 +5,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -38,7 +39,7 @@ public class HomePageTest {
         driver.get(ConfigFileReader.getApplicationUrl()) ;
         driver.manage().timeouts().implicitlyWait(ConfigFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
         homePage = new HomePageFactory(driver);
-        homePage.clickOnAcceptInPopup();
+        homePage.clickOnAcceptCookiesInPopup();
 
     }
 
@@ -52,6 +53,22 @@ public class HomePageTest {
     public void verify_profile_icon(){
         Assert.assertTrue(homePage.isProfileIconDisplayed());
     }
+
+    @When("The user clicks on 'Bedarf' in view")
+    public void click_on_bedarf_text(){
+        Assert.assertEquals(homePage.getBedarfTextHrefAttribute(), "https://staging.clark.de/de/app/recommendations");
+        homePage.clickOnBedarfText();
+    }
+
+    @Then("The user should be navigated to the recommendations page successfully")
+    public void user_on_bedarf_tab() throws InterruptedException {
+        Thread.sleep(2000);
+        String theUrl = driver.getCurrentUrl();
+        Assert.assertEquals(theUrl, "https://staging.clark.de/de/app/recommendations?tab=no1-recommendation#");
+    }
+
+
+
 
 
 

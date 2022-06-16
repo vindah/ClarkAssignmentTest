@@ -1,5 +1,7 @@
 package pages;
 
+
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,17 +12,17 @@ public class HomePageFactory {
     WebDriver driver;
 
     //Getting all the elements/selectors on the pages
-    @FindBy(xpath = "//*[@id=\"ember105\"]")
+    @FindBy(id = "ember6")
     WebElement clarkLogo;
 
     @FindBy(xpath = "//*[@id=\"ember4\"]/div/div/div/header/nav/ul[1]/li[2]/a")
     WebElement bedarfText;
 
-    @FindBy(id= "ember106")
+    @FindBy(id= "ember7")
     WebElement profileIcon;
 
     @FindBy(xpath = "//*[@id=\"ember4\"]/div[2]/form/div[4]/button")
-    WebElement acceptBtnInPopup;
+    WebElement acceptCookieBtn;
 
     public HomePageFactory(WebDriver driver) {
         this.driver = driver;
@@ -47,7 +49,7 @@ public class HomePageFactory {
         try {
             return bedarfText.isDisplayed();
         } catch (Exception e) {
-            System.out.print("Bedarf cannot be located \n" + e.getMessage());
+            System.out.print("Bedarf text cannot be located \n" + e.getMessage());
 
             return false;
         }
@@ -70,8 +72,16 @@ public class HomePageFactory {
     }
 
     //Click on the Accept button in popup
-    public void clickOnAcceptInPopup(){
-        acceptBtnInPopup.click();
+    public void clickOnAcceptCookiesInPopup(){
+        acceptCookieBtn.click();
+    }
+
+    public String getBedarfTextHrefAttribute () {
+        return bedarfText.getAttribute("href");
     }
 
 }
+
+
+
+
