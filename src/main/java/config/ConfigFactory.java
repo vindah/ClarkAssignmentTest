@@ -31,7 +31,7 @@ public class ConfigFactory {
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            throw new RuntimeException("Configuration.properties not found at " + propertyFilePath);
+            throw new RuntimeException("config.properties not found at " + propertyFilePath);
         }
     }
 }
