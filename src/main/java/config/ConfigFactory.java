@@ -34,4 +34,16 @@ public class ConfigFactory {
             throw new RuntimeException("config.properties not found at " + propertyFilePath);
         }
     }
+
+    public long getImplicitlyWait() {
+        String implicitlyWait = properties.getProperty("implicitlyWait");
+        if (implicitlyWait != null) return Long.parseLong(implicitlyWait);
+        else throw new RuntimeException("implicitlyWait not specified in the config.properties file.");
+    }
+
+    public String getApplicationUrl() {
+        String url = properties.getProperty("url");
+        if (url != null) return url;
+        else throw new RuntimeException("url not specified in the config.properties file.");
+    }
 }
