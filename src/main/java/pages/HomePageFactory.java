@@ -1,10 +1,13 @@
 package pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class HomePageFactory {
 
+    WebDriver driver;
 
     //Getting all the elements/selectors on the pages
     @FindBy(xpath = "//*[@id=\"ember105\"]")
@@ -15,6 +18,13 @@ public class HomePageFactory {
 
     @FindBy(id= "ember106")
     WebElement profileIcon;
+
+    public HomePageFactory(WebDriver driver) {
+        this.driver = driver;
+
+        //Initialize web elements
+        PageFactory.initElements(driver, this);
+    }
 
 
     //Methods below are for different actions on the home page
