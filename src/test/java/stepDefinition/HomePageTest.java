@@ -21,9 +21,10 @@ public class HomePageTest {
     // This runs before each test
     @Before()
     public void setup() {
+        ConfigFileReader = new ConfigFactory();
         driver = driverUtil.driverFactory.open("chrome");
         driver.manage().timeouts().implicitlyWait(ConfigFileReader.getImplicitlyWait(), TimeUnit.SECONDS) ;
-        ConfigFileReader = new ConfigFactory();
+
     }
 
     //Smoke test - verify that the home page loads properly
@@ -33,6 +34,7 @@ public class HomePageTest {
         driver.get(ConfigFileReader.getApplicationUrl()) ;
         driver.manage().timeouts().implicitlyWait(ConfigFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
         homePage = new HomePageFactory(driver);
+        homePage.clickOnAcceptInPopup();
 
     }
 

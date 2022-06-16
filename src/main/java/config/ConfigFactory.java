@@ -18,7 +18,7 @@ public class ConfigFactory {
         return "src//test//resources//profiles//" + profileId + "//config.properties";
     }
 
-    public void configFileReader() {
+    public ConfigFactory() {
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(propertyFilePath));

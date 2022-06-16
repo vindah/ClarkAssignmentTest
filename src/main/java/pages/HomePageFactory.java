@@ -19,6 +19,9 @@ public class HomePageFactory {
     @FindBy(id= "ember106")
     WebElement profileIcon;
 
+    @FindBy(xpath = "//*[@id=\"ember4\"]/div[2]/form/div[4]/button")
+    WebElement acceptBtnInPopup;
+
     public HomePageFactory(WebDriver driver) {
         this.driver = driver;
 
@@ -64,6 +67,11 @@ public class HomePageFactory {
     //Click on the Bedarf text
     public void clickOnBedarfText() {
         bedarfText.click();
+    }
+
+    //Click on the Accept button in popup
+    public void clickOnAcceptInPopup(){
+        acceptBtnInPopup.click();
     }
 
 }

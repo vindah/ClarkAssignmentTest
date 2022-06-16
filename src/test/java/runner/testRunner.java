@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
         features = {"src/test/resources/features"},
         tags= "@test",
         glue = {"stepDefinition"},
+
         plugin = {
                 //"com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html",
                 "pretty","html:target/cucumber", "json:target/cucumber.json",
