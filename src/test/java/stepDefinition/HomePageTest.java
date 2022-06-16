@@ -1,12 +1,16 @@
 package stepDefinition;
 
 import config.ConfigFactory;
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import pages.HomePageFactory;
+import io.cucumber.java.Scenario;
 
 import java.util.concurrent.TimeUnit;
 
@@ -48,4 +52,36 @@ public class HomePageTest {
     public void verify_profile_icon(){
         Assert.assertTrue(homePage.isProfileIconDisplayed());
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @After()
+    public void takeScreenshots_and_quitDriver(Scenario scenario) {
+        if (scenario.isFailed()) {
+            // take screenshot:
+            String screenshotName = scenario.getName().replaceAll(" ", "_");
+            byte[] sourcePath = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            scenario.attach(sourcePath, "image/png", screenshotName);
+        }
+        //eyes.abortIfNotClosed();
+        driver.quit();
+    }
 }
+
+
+
+
+
+
+
+

@@ -95,6 +95,12 @@
             <artifactId>owner</artifactId>
             <version>1.0.12</version>
         </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>6.10.4</version>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
 
