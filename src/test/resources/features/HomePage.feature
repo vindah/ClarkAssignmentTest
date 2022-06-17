@@ -13,7 +13,7 @@ Feature: Home Page feature
 
     # Clark home - Navigating to Bedarf tab
   @acceptance @regression
-  Scenario: Verify user can navigate to Bedarf tab successfully
+  Scenario: Verify user can navigate to Recommendations tab successfully
     Given The user is on the home page
     When The user clicks on 'Bedarf' in view
     Then The user should be navigated to the recommendations page successfully

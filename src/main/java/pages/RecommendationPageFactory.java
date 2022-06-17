@@ -13,8 +13,17 @@ public class RecommendationPageFactory {
     @FindBy(className = "_title-container_ijqj2q")
     WebElement titleSlider;
 
-    @FindBy(xpath = "//*[@id=\"ember95\"]")
+    @FindBy(linkText = "Jetzt starten")
     WebElement startNowBtn;
+
+    @FindBy(className = "datepicker picker")
+    WebElement dateIcon;
+
+    @FindBy(className = "datepicker-container")
+    WebElement datePicker;
+
+    @FindBy(className = "ember-text-field")
+    WebElement dateField;
 
 
     public RecommendationPageFactory(WebDriver driver) {
@@ -25,6 +34,7 @@ public class RecommendationPageFactory {
     }
 
 
+    //check that start not btn is displayed
     public boolean isStartNowBtnDisplayed() {
         try {
             return startNowBtn.isDisplayed();
@@ -34,6 +44,37 @@ public class RecommendationPageFactory {
             return false;
         }
     }
+
+    //check that start not btn is displayed
+    public boolean isDateFieldDisplayed() {
+        try {
+            return dateField.isDisplayed();
+        } catch (Exception e) {
+            System.out.print("Date field cannot be located \n" + e.getMessage());
+
+            return false;
+        }
+    }
+
+
+    //Click on the date icon
+    public void clickOnDateIcon(){
+        dateIcon.click();
+    }
+
+    //Click on date field
+    public void clickOnDateFieldAndTypeDate(String date){
+        dateField.sendKeys(date);
+    }
+
+    //Click on start now button
+    public void clickOnStartNow(){
+        startNowBtn.click();
+    }
+
+
+
+
 
 
 

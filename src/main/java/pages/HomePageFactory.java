@@ -72,10 +72,18 @@ public class HomePageFactory {
         bedarfText.click();
     }
 
+
+    //Click on the clark logo to return to home page
+    public void clickOnClarkLogoText(){
+        clarkLogo.click();
+    }
+
+
     //Click on the Accept button in popup
     public void clickOnAcceptCookiesInPopup(){
         acceptCookieBtn.click();
     }
+
 
     public String getBedarfTextHrefAttribute () {
         return bedarfText.getAttribute("href");

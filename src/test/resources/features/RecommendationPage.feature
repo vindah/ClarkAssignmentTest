@@ -8,9 +8,9 @@ Feature: Recommendation Page feature
   @smoke
   Scenario: Verify that the user can fill recommendations form
     Given The user is on the recommendations page
-    When The user clicks on the 'Statr now' button
-    Then The recommendations form should be displayed.
-    When The user clicks on the date picker and selects a date
+    When The user clicks on the 'Start now' button
+    Then The recommendations form should be displayed
+    When The user clicks on the date field and enters a date
     And The user
 
     # Clark home - Navigating to Bedarf tab

@@ -17,34 +17,47 @@ import pages.RecommendationPageFactory;
 
 import java.util.concurrent.TimeUnit;
 
-public class HomePageTest extends BaseTest{
+public class HomePageSteps {
 
+    WebDriver driver;
+    ConfigFactory ConfigFileReader;
     HomePageFactory homePage;
     RecommendationPageFactory recommendationPage;
 
 
 
+    // This runs before test
+    @Before()
+    public void setup() throws InterruptedException {
+        ConfigFileReader = new ConfigFactory();
+        driver = driverUtil.driverFactory.open("chrome");
+        driver.manage().deleteAllCookies(); //delete all cookies
+        Thread.sleep(3000); //wait 7 seconds to clear cookies.
+        driver.manage().timeouts().implicitlyWait(ConfigFileReader.getImplicitlyWait(), TimeUnit.SECONDS) ;
+
+    }
+
 
     //Smoke test - verify that the home page loads properly
     @Given("The user is on the home page")
     public void user_home_page() {
-        System.out.println("Opening URL: " + ConfigFileReader.getApplicationUrl());
-        driver.get(ConfigFileReader.getApplicationUrl()) ;
+        System.out.println("Opening URL: " + ConfigFileReader.getApplicationUrl("url"));
+        driver.get(ConfigFileReader.getApplicationUrl("url")) ;
         driver.manage().timeouts().implicitlyWait(ConfigFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
         homePage = new HomePageFactory(driver);
         recommendationPage = new RecommendationPageFactory(driver);
         homePage.clickOnAcceptCookiesInPopup();
-
+        //homePage.clickOnClarkLogoText();
     }
 
     @Then("The Clark Logo should be displayed")
-    public void verify_page_logo () {
+    public void clark_page_logo_should_be_displayed () {
         Assert.assertTrue(homePage.isLogoDisplayed());
         Assert.assertTrue(homePage.isBedarfTextDisplayed());
     }
 
     @Then("The side profile icon should be displayed")
-    public void verify_profile_icon(){
+    public void side_profile_icon_should_be_displayed(){
         Assert.assertTrue(homePage.isProfileIconDisplayed());
     }
 
@@ -65,14 +78,18 @@ public class HomePageTest extends BaseTest{
 
 
 
-
-
-
-
-
-
-
-
+    //This runs after test
+    @After()
+    public void takeScreenshots_and_quitDriver(Scenario scenario) {
+        if (scenario.isFailed()) {
+            // take screenshot:
+            String screenshotName = scenario.getName().replaceAll(" ", "_");
+            byte[] sourcePath = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            scenario.attach(sourcePath, "image/png", screenshotName);
+        }
+        //eyes.abortIfNotClosed();
+        driver.quit();
+    }
 
 
 }

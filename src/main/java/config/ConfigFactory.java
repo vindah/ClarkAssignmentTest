@@ -41,9 +41,9 @@ public class ConfigFactory {
         else throw new RuntimeException("implicitlyWait not specified in the config.properties file.");
     }
 
-    public String getApplicationUrl() {
-        String url = properties.getProperty("url");
-        if (url != null) return url;
+    public String getApplicationUrl(String theUrl) {
+        theUrl = properties.getProperty(theUrl);
+        if (theUrl != null) return theUrl;
         else throw new RuntimeException("url not specified in the config.properties file.");
     }
 }
