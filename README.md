@@ -7,7 +7,7 @@ It clicks on the recommendations page, fills the recommendation options, signs u
 1. Have Java installed on your machine.
 
 2. Clone the repo by first navigating to the the folder on your terminal that you want to create the project then run:
-`git clone https://github.com/vindah/ClarkTestAutomation.git`
+`git clone https://github.com/vindah/ClarkAssignmentTest.git`
 
 or clone directly on preferred IDE
 
